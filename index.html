@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Profile Links</title>
-  <!-- Font Awesome for icons (CDN) -->
+
+  <!-- Font Awesome (CDN) để có icon -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -14,19 +15,23 @@
   />
 
   <style>
-    /* Basic reset */
+    /* RESET */
     * {
-      margin: 0;
+      margin: 0; 
       padding: 0;
       box-sizing: border-box;
     }
 
+    /* BODY */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       transition: background 0.5s, color 0.5s;
+      margin: 0;
+      padding: 0;
+      position: relative;
     }
 
-    /* LIGHT MODE (default) */
+    /* LIGHT MODE (mặc định) */
     body.light {
       background: linear-gradient(135deg, #e3fdfd 0%, #ffe6fa 100%);
       color: #333;
@@ -38,7 +43,7 @@
       color: #eee;
     }
 
-    /* Container trung tâm */
+    /* CONTAINER CHÍNH */
     .container {
       display: flex;
       flex-direction: column;
@@ -51,7 +56,7 @@
       padding: 20px;
     }
 
-    /* Ảnh avatar */
+    /* AVATAR */
     .avatar {
       width: 100px;
       height: 100px;
@@ -65,7 +70,7 @@
       transform: scale(1.05);
     }
 
-    /* Tên / tiêu đề */
+    /* TÊN, TIÊU ĐỀ */
     h1 {
       font-size: 1.8rem;
       margin-bottom: 8px;
@@ -75,7 +80,7 @@
       margin-bottom: 20px;
     }
 
-    /* Các nút link */
+    /* DANH SÁCH LINK */
     .link-buttons {
       display: flex;
       flex-direction: column;
@@ -95,7 +100,7 @@
       background: rgba(255, 255, 255, 0.1);
     }
 
-    /* Thanh icon mạng xã hội bên dưới */
+    /* ICON MẠNG XÃ HỘI */
     .social-icons {
       display: flex;
       gap: 15px;
@@ -112,7 +117,7 @@
       opacity: 0.8;
     }
 
-    /* Nút toggle Dark/Light */
+    /* NÚT CHUYỂN DARK/LIGHT */
     .theme-toggle {
       position: absolute;
       top: 20px;
@@ -122,12 +127,16 @@
       gap: 8px;
       cursor: pointer;
       user-select: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid currentColor;
+      background: rgba(255, 255, 255, 0.2);
     }
     .theme-toggle i {
       font-size: 1.2rem;
     }
 
-    /* Hiệu ứng fade-up */
+    /* HIỆU ỨNG FADE-UP */
     @keyframes fadeUp {
       0% {
         opacity: 0;
@@ -138,39 +147,29 @@
         transform: translateY(0);
       }
     }
-
-    /* Responsive (ví dụ) */
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.5rem;
-      }
-      .link-btn {
-        padding: 10px 15px;
-      }
-    }
   </style>
 </head>
 
 <body class="light">
-  <!-- Nút toggle Dark/Light Mode -->
+  <!-- Nút chuyển Dark/Light Mode -->
   <div class="theme-toggle" id="theme-toggle">
     <i class="fas fa-sun"></i>
     <i class="fas fa-moon"></i>
   </div>
 
   <div class="container">
-    <!-- Avatar -->
-    <img 
-      src="https://i.pravatar.cc/150?u=niya" 
-      alt="Avatar" 
+    <!-- AVATAR -->
+    <img
+      src="https://i.pravatar.cc/150?u=niya"
+      alt="Avatar"
       class="avatar"
     />
 
-    <!-- Tên -->
-    <h1>@niyakiphram</h1>
+    <!-- TÊN & MÔ TẢ -->
+    <h1>@gozn</h1>
     <p>Short bio or description</p>
 
-    <!-- Danh sách link -->
+    <!-- CÁC LINK -->
     <div class="link-buttons">
       <a href="#" class="link-btn">Facebook</a>
       <a href="#" class="link-btn">Zalo</a>
@@ -178,7 +177,7 @@
       <a href="#" class="link-btn">Discord</a>
     </div>
 
-    <!-- Social Icons -->
+    <!-- ICON MẠNG XÃ HỘI -->
     <div class="social-icons">
       <a href="#"><i class="fab fa-facebook"></i></a>
       <a href="#"><i class="fab fa-github"></i></a>
@@ -188,10 +187,11 @@
   </div>
 
   <script>
-    // Toggle Dark/Light Mode
+    // Lấy body & nút toggle
     const body = document.body;
     const themeToggle = document.getElementById('theme-toggle');
 
+    // Khi click nút -> đổi class
     themeToggle.addEventListener('click', () => {
       body.classList.toggle('dark');
       body.classList.toggle('light');
