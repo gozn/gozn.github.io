@@ -1,202 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Profile Links</title>
-
-  <!-- Font Awesome (CDN) để có icon -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Page</title>
   <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-  integrity="sha512-2knvRcz62CkSt4ea7/HzR3qE7Dk9Ke6fUErcmk5I3W3F+JJeEZTzXZkkNZWFe9xj09ZGw8UOZ6KzI6zt08T3Bw=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-2knvRcz62CkSt4ea7/HzR3qE7Dk9Ke6fUErcmk5I3W3F+JJeEZTzXZkkNZWFe9xj09ZGw8UOZ6KzI6zt08T3Bw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
   />
-
-
   <style>
-    /* RESET */
-    * {
-      margin: 0; 
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    /* BODY */
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      transition: background 0.5s, color 0.5s;
-      margin: 0;
-      padding: 0;
-      position: relative;
+      transition: background-color 0.5s ease, color 0.5s ease;
+      font-family: Arial, sans-serif;
     }
 
-    /* LIGHT MODE (mặc định) */
-    body.light {
-      background: linear-gradient(135deg, #e3fdfd 0%, #ffe6fa 100%);
+    .dark-mode {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .light-mode {
+      background-color: #f0f0f0;
       color: #333;
     }
 
-    /* DARK MODE */
-    body.dark {
-      background: linear-gradient(135deg, #141E30 0%, #243B55 100%);
-      color: #eee;
-    }
-
-    /* CONTAINER CHÍNH */
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      animation: fadeUp 0.6s ease forwards;
-      opacity: 0;
+    .profile-container {
       text-align: center;
-      padding: 20px;
+      margin-top: 100px;
     }
 
-    /* AVATAR */
-    .avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      margin-bottom: 15px;
-      object-fit: cover;
-      border: 2px solid rgba(255, 255, 255, 0.6);
-      transition: transform 0.3s;
-    }
-    .avatar:hover {
-      transform: scale(1.05);
-    }
-
-    /* TÊN, TIÊU ĐỀ */
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 8px;
-    }
-    p {
-      font-size: 1rem;
-      margin-bottom: 20px;
-    }
-
-    /* DANH SÁCH LINK */
-    .link-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 30px;
-    }
-    .link-btn {
-      display: inline-block;
-      text-decoration: none;
-      padding: 12px 20px;
-      border: 1px solid currentColor;
-      border-radius: 8px;
-      transition: background 0.3s, color 0.3s;
-      font-weight: 500;
-    }
-    .link-btn:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* ICON MẠNG XÃ HỘI */
-    .social-icons {
-      display: flex;
-      gap: 15px;
-      margin-top: 15px;
-    }
-    .social-icons a {
-      color: currentColor;
-      text-decoration: none;
-      font-size: 1.2rem;
-      transition: transform 0.3s, opacity 0.3s;
-    }
-    .social-icons a:hover {
-      transform: scale(1.2);
-      opacity: 0.8;
-    }
-
-    /* NÚT CHUYỂN DARK/LIGHT */
-    .theme-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .mode-switch {
       cursor: pointer;
-      user-select: none;
-      padding: 8px 12px;
-      border-radius: 8px;
-      border: 1px solid currentColor;
-      background: rgba(255, 255, 255, 0.2);
-    }
-    .theme-toggle i {
-      font-size: 1.2rem;
+      background-color: transparent;
+      border: none;
+      font-size: 24px;
     }
 
-    /* HIỆU ỨNG FADE-UP */
-    @keyframes fadeUp {
-      0% {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .social-buttons {
+      margin-top: 20px;
+    }
+
+    .social-buttons button {
+      margin: 5px;
+      padding: 10px 20px;
+      border: 2px solid #333;
+      background: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .social-buttons button:hover {
+      background-color: #333;
+      color: white;
     }
   </style>
 </head>
+<body class="light-mode">
 
-<body class="light">
-  <!-- Nút chuyển Dark/Light Mode -->
-  <div class="theme-toggle" id="theme-toggle">
-    <i class="fas fa-sun"></i>
-    <i class="fas fa-moon"></i>
-  </div>
-
-  <div class="container">
-    <!-- AVATAR -->
-    <img
-      src="https://i.pravatar.cc/150?u=niya"
-      alt="Avatar"
-      class="avatar"
-    />
-
-    <!-- TÊN & MÔ TẢ -->
-    <h1>@gozn</h1>
+  <div class="profile-container">
+    <img src="https://www.example.com/profile.jpg" alt="Profile Image" width="100" height="100" style="border-radius: 50%;"/>
+    <h2>@gozn</h2>
     <p>Short bio or description</p>
 
-    <!-- CÁC LINK -->
-    <div class="link-buttons">
-      <a href="#" class="link-btn">Facebook</a>
-      <a href="#" class="link-btn">Zalo</a>
-      <a href="#" class="link-btn">GitHub</a>
-      <a href="#" class="link-btn">Discord</a>
-    </div>
+    <!-- Dark/Light Mode Toggle -->
+    <button class="mode-switch" onclick="toggleMode()">
+      <i class="fas fa-moon"></i> <!-- Default icon for Dark Mode -->
+    </button>
 
-    <!-- ICON MẠNG XÃ HỘI -->
-    <div class="social-icons">
-      <a href="#"><i class="fab fa-facebook"></i></a>
-      <a href="#"><i class="fab fa-github"></i></a>
-      <a href="#"><i class="fab fa-youtube"></i></a>
-      <a href="#"><i class="fab fa-linkedin"></i></a>
+    <div class="social-buttons">
+      <button>Facebook</button>
+      <button>Zalo</button>
+      <button>GitHub</button>
+      <button>Discord</button>
     </div>
   </div>
 
   <script>
-    // Lấy body & nút toggle
-    const body = document.body;
-    const themeToggle = document.getElementById('theme-toggle');
+    // Function to toggle between light and dark mode
+    function toggleMode() {
+      const body = document.body;
+      const modeSwitch = document.querySelector('.mode-switch');
+      
+      // Toggle the class on body
+      body.classList.toggle('dark-mode');
+      body.classList.toggle('light-mode');
 
-    // Khi click nút -> đổi class
-    themeToggle.addEventListener('click', () => {
-      body.classList.toggle('dark');
-      body.classList.toggle('light');
-    });
+      // Change icon depending on the mode
+      if (body.classList.contains('dark-mode')) {
+        modeSwitch.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon for Dark Mode
+      } else {
+        modeSwitch.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for Light Mode
+      }
+    }
   </script>
 </body>
 </html>
